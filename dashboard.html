@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <h1>Task Manager</h1>
+            <div class="navbar-actions">
+                <span id="userDisplay">Welcome, User</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="panel add-task-section">
+            <h2>Add Task</h2>
+            <div class="form-group">
+                <label for="taskInput">Task</label>
+                <input id="taskInput" type="text" placeholder="Type a task..." maxlength="255">
+            </div>
+            <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
+            <div id="taskMessage" class="form-message"></div>
+        </section>
+
+        <section class="panel tasks-section">
+            <div class="section-header">
+                <h2>Your Tasks</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Loading tasks...</p>
+            </div>
+
+            <div id="tasksList" class="tasks-list">
+                <div class="empty-state">No tasks yet. Add your first one.</div>
+            </div>
+        </section>
+    </main>
+
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="modal-close" type="button" onclick="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTaskInput">Task</label>
+                    <input id="editTaskInput" type="text" maxlength="255">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" onclick="closeEditModal()">Cancel</button>
+                <button class="btn btn-primary" id="saveEditBtn" type="button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
